@@ -17,7 +17,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y \
     curl \
     mc \
     sudo \
-    openjdk-11-jre
+    openjdk-17-jre
 msg_ok "Installed Dependencies"
 
 msg_info "Downloading Artifactory Community Edition"
