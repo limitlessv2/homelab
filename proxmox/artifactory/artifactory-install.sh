@@ -12,10 +12,8 @@ setting_up_container
 network_check
 update_os
 
-STD="DEBIAN_FRONTEND=noninteractive"
-
 msg_info "Installing Dependencies"
-$STD apt-get install -y \
+DEBIAN_FRONTEND=noninteractive apt-get install -y \
     curl \
     mc \
     sudo \
@@ -60,7 +58,7 @@ motd_ssh
 customize
 
 msg_info "Cleaning up"
-$STD rm -rf /tmp/artifactory.tar.gz
-$STD apt-get -y autoremove
-$STD apt-get -y autoclean
+rm -rf /tmp/artifactory.tar.gz
+apt-get -y autoremove
+apt-get -y autoclean
 msg_ok "Cleaned"
