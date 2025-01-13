@@ -40,50 +40,9 @@ function update_script() {
     exit
 }
 
-function install_artifactory() {
-    msg_info "Installing Dependencies"
-    $STD apt-get install -y openjdk-11-jre curl sudo mc
-    msg_ok "Installed Dependencies"
-
-    msg_info "Downloading Artifactory Community Edition"
-    ARTIFACTORY_VERSION="7.49.8" # Update to the latest version if needed
-    wget -qO /tmp/artifactory.tar.gz https://releases.jfrog.io/artifactory/artifactory-pro/org/artifactory/pro/jfrog-artifactory-oss/${ARTIFACTORY_VERSION}/jfrog-artifactory-oss-${ARTIFACTORY_VERSION}-linux.tar.gz
-    msg_ok "Downloaded Artifactory"
-
-    msg_info "Installing Artifactory"
-    tar -xzf /tmp/artifactory.tar.gz -C /opt/
-    mv /opt/artifactory-* /opt/artifactory
-    /opt/artifactory/app/bin/installService.sh
-    msg_ok "Installed Artifactory"
-
-    msg_info "Configuring Artifactory Service"
-    cat <<EOF >/etc/systemd/system/artifactory.service
-[Unit]
-Description=JFrog Artifactory Community Edition
-After=network.target
-
-[Service]
-Type=forking
-ExecStart=/opt/artifactory/app/bin/artifactoryManage.sh start
-ExecStop=/opt/artifactory/app/bin/artifactoryManage.sh stop
-User=root
-Group=root
-Restart=always
-TimeoutSec=300
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-    systemctl daemon-reload
-    systemctl enable -q --now artifactory
-    msg_ok "Configured and Started Artifactory Service"
-}
-
 start
 build_container
 description
-install_artifactory
 
 msg_ok "Completed Successfully!\n"
 echo -e "${CREATING}${GN}${APP} setup has been successfully initialized!${CL}"
