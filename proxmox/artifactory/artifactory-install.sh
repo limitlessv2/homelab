@@ -12,6 +12,8 @@ setting_up_container
 network_check
 update_os
 
+STD="DEBIAN_FRONTEND=noninteractive"
+
 msg_info "Installing Dependencies"
 $STD apt-get install -y \
     curl \
