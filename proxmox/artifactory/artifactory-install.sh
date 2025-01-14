@@ -50,29 +50,9 @@ TimeoutSec=300
 WantedBy=multi-user.target
 EOF
 
-cat <<EOF > /etc/systemd/system/artifactory-router.service
-[Unit]
-Description=Artifactory Router Service
-After=network.target
-
-[Service]
-Type=forking
-User=artifactory
-ExecStart=/opt/artifactory/app/router/bin/router.sh start
-ExecStop=/opt/artifactory/app/router/bin/router.sh stop
-PIDFile=/opt/artifactory/var/run/router.pid
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
 systemctl daemon-reload
 systemctl enable -q --now artifactory
 msg_ok "Configured and Started Artifactory Service"
-
-systemctl enable -q --now artifactory-router
-msg_ok "Configured and Started Artifactory Router Service"
 
 motd_ssh
 customize
