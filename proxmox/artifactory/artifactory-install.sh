@@ -71,6 +71,9 @@ systemctl daemon-reload
 systemctl enable -q --now artifactory
 msg_ok "Configured and Started Artifactory Service"
 
+systemctl enable -q --now artifactory-router
+msg_ok "Configured and Started Artifactory Router Service"
+
 motd_ssh
 customize
 
