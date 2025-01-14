@@ -21,7 +21,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y \
 msg_ok "Installed Dependencies"
 
 msg_info "Downloading Artifactory Community Edition"
-ARTIFACTORY_VERSION="7.98.9" # Update this to the latest version if needed
+ARTIFACTORY_VERSION="7.77.5" # Update this to the latest version if needed
 wget -qO /tmp/artifactory.tar.gz https://releases.jfrog.io/artifactory/bintray-artifactory/org/artifactory/oss/jfrog-artifactory-oss/${ARTIFACTORY_VERSION}/jfrog-artifactory-oss-${ARTIFACTORY_VERSION}-linux.tar.gz
 msg_ok "Downloaded Artifactory"
 
