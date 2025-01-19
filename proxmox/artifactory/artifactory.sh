@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source <(curl -s https://raw.githubusercontent.com/limitlessv2/homelab/refs/heads/main/proxmox/common/build.sh)
+source <(curl -s https://raw.githubusercontent.com/limitlessv2/homelab-scripts/refs/heads/main/proxmox/common/build.sh)
 # Copyright (c) 2021-2025 community-scripts ORG
 # Author: kristocopani
 # License: MIT
